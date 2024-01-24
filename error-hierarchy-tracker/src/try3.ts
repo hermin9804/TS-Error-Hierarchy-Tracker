@@ -140,7 +140,6 @@ function findThrowStatements(
   if (ts.isThrowStatement(node) && node.expression) {
     const errorMessage = node.expression.getText();
     const cleanedErrorMessage = extractPattern(errorMessage) || errorMessage;
-    console.log("cleanedErrorMessage", cleanedErrorMessage);
     callback(cleanedErrorMessage);
   }
   ts.forEachChild(node, (childNode) =>
@@ -268,7 +267,7 @@ function findUnnecessaryHandledErrors(
 
 // Main Execution Function
 async function main() {
-  const projectRoot = "./src";
+  const projectRoot = "../test-app/src";
   const targetFiles = findFilesInDir(
     projectRoot,
     /\.controller\.ts$|\.service\.ts$|\.strategy\.ts$/
