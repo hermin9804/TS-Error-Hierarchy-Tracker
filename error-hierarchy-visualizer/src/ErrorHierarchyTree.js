@@ -36,8 +36,8 @@ const ErrorHierarchyTree = ({ data }) => {
         data={data}
         orientation="horizontal"
         translate={{ x: 300, y: 300 }}
-        nodeSize={{ x: 200, y: 200 }} // Adjust the node size to control spacing
-        separation={{ siblings: 2 }}
+        nodeSize={{ x: 300, y: 200 }} // Adjust the node size to control spacing
+        separation={{ siblings: 1 }}
         renderCustomNodeElement={renderCustomNodeElement}
       />
     </div>

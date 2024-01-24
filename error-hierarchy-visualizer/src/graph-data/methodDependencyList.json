@@ -1,0 +1,560 @@
+{
+  "AuthController.signIn": [
+    "AuthService.signIn"
+  ],
+  "AuthController.signInWithTwoFactor": [
+    "console.log",
+    "TfaAuthService.authTwoFactorToken"
+  ],
+  "AuthController.verifyTwoFactorCode": [
+    "console.log",
+    "TfaAuthService.verifyTwoFactorCode"
+  ],
+  "AuthService.signIn": [
+    "FtAuthService.getAccessToken",
+    "FtAuthService.getUserInfo",
+    "UserRepository.findOne",
+    "UserService.create",
+    "AuthService.createAccessToken",
+    "TfaAuthService.signInTwoFactorToken",
+    "AuthService.createAccessToken",
+    "console.log"
+  ],
+  "JwtStrategy.validate": [],
+  "EmailService.sendMemberJoinVerification": [
+    "console.log",
+    "MailerService.sendMail"
+  ],
+  "FtAuthService.getAccessToken": [
+    "axios.post"
+  ],
+  "FtAuthService.getUserInfo": [
+    "axios.get"
+  ],
+  "TfaAuthService.signInTwoFactorToken": [
+    "TfaAuthService.createTwoFactorToken",
+    "TfaRepository.upsert",
+    "EmailService.sendMemberJoinVerification"
+  ],
+  "TfaAuthService.verifyTwoFactorCode": [
+    "TfaRepository.findOne",
+    "console.log",
+    "Math.floor",
+    "now.getTime",
+    "updatedAt.getTime",
+    "TfaRepository.save"
+  ],
+  "TfaAuthService.authTwoFactorToken": [
+    "console.log",
+    "JwtService.verifyAsync",
+    "TfaAuthService.createAccessToken",
+    "TfaRepository.findOne",
+    "TfaRepository.delete"
+  ],
+  "BlockController.block": [
+    "BlockService.block"
+  ],
+  "BlockController.unBlock": [
+    "BlockService.unBlock"
+  ],
+  "BlockController.findAllBlockedUser": [
+    "BlockService.findAllBlockedUser"
+  ],
+  "BlockController.findAllBlockedUserByUserId": [
+    "BlockService.findAllBlockedUserByUserId"
+  ],
+  "BlockController.findAllBlockedUserByBlockingId": [
+    "BlockService.findAllBlockedUserByBlockingId"
+  ],
+  "BlockService.block": [
+    "UserRepository.findOne",
+    "user.blockings.find",
+    "console.log",
+    "BlockRepository.create",
+    "BlockRepository.save"
+  ],
+  "BlockService.unBlock": [
+    "BlockRepository.findOne",
+    "BlockRepository.delete"
+  ],
+  "BlockService.findAllBlockedUser": [
+    "BlockRepository.find"
+  ],
+  "BlockService.findAllBlockedUserByUserId": [
+    "BlockRepository.find"
+  ],
+  "BlockService.findAllBlockedUserByBlockingId": [
+    "BlockRepository.find"
+  ],
+  "ChannelController.findJoinedChannel": [
+    "ChannelService.findJoinedChannel"
+  ],
+  "ChannelController.findOneJoinedChannel": [
+    "ChannelService.findOneChannelMember"
+  ],
+  "ChannelController.create": [
+    "console.log",
+    "ChannelService.create"
+  ],
+  "ChannelController.createDirectChannel": [
+    "ChannelService.createDirectChannel"
+  ],
+  "ChannelController.findJoinedDirectChannel": [
+    "ChannelService.findJoinedDirectChannel"
+  ],
+  "ChannelController.update": [
+    "ChannelService.update"
+  ],
+  "ChannelController.delete": [
+    "ChannelService.delete"
+  ],
+  "ChannelController.findAll": [
+    "ChannelService.findAll"
+  ],
+  "ChannelController.findAllBySearchKeyword": [
+    "ChannelService.findAllBySearchKeyword"
+  ],
+  "ChannelController.findOne": [
+    "ChannelService.findOne"
+  ],
+  "ChannelController.findAllChannelMember": [
+    "ChannelService.findAllChannelMember"
+  ],
+  "ChannelController.join": [
+    "ChannelMemberService.join"
+  ],
+  "ChannelController.exit": [
+    "ChannelMemberService.exit"
+  ],
+  "ChannelController.invite": [
+    "console.log",
+    "ChannelMemberService.invite"
+  ],
+  "ChannelController.findAllChannelMutedMember": [
+    "ChannelService.findAllChannelMutedMember"
+  ],
+  "ChannelController.mute": [
+    "ChannelMuteService.mute"
+  ],
+  "ChannelController.findAllChannelBannedMember": [
+    "ChannelService.findAllChannelBannedMember"
+  ],
+  "ChannelController.ban": [
+    "ChannelBanService.ban"
+  ],
+  "ChannelController.deleteChannelBannedMember": [
+    "console.log",
+    "console.log",
+    "ChannelBanService.deleteChannelBannedMember"
+  ],
+  "ChannelController.kick": [
+    "ChannelKickService.kick"
+  ],
+  "ChannelController.checkChannelAdmin": [
+    "ChannelService.checkChannelAdmin"
+  ],
+  "ChannelController.updateChannelAdmin": [
+    "ChannelService.updateChannelAdmin"
+  ],
+  "ChannelBanService.ban": [
+    "ChannelService.findOne",
+    "ChannelService.checkIsChannelAdmin",
+    "ChannelService.checkIsChannelMember",
+    "ChannelService.checkIsNotChannelOwner",
+    "ChannelService.checkIsMe",
+    "channel.channelBannedMembers.find",
+    "ChannelBannedMemberRepository.create",
+    "ChannelBannedMemberRepository.save",
+    "ChatGateway.kickMember",
+    "ChannelMemberRepository.delete"
+  ],
+  "ChannelBanService.deleteChannelBannedMember": [
+    "ChannelService.findOne",
+    "ChannelService.checkIsChannelAdmin",
+    "ChannelBannedMemberRepository.findOne",
+    "ChannelBannedMemberRepository.delete"
+  ],
+  "ChannelKickService.kick": [
+    "ChannelService.findOne",
+    "ChannelService.checkIsChannelAdmin",
+    "ChannelService.checkIsChannelMember",
+    "ChannelService.checkIsNotChannelOwner",
+    "ChannelService.checkIsMe",
+    "ChatGateway.kickMember",
+    "ChannelMemberRepository.delete"
+  ],
+  "ChannelMemberService.join": [
+    "ChannelService.findOne",
+    "channel.channelMembers.find",
+    "bcrypt.compare",
+    "channel.channelBannedMembers.find",
+    "ChannelMemberRepository.create",
+    "ChannelMemberRepository.save"
+  ],
+  "ChannelMemberService.exit": [
+    "ChannelRepository.manager.transaction",
+    "transactionalEntityManager.delete",
+    "transactionalEntityManager.find",
+    "transactionalEntityManager.findOne",
+    "transactionalEntityManager.delete",
+    "channelMembers.find",
+    "transactionalEntityManager.update",
+    "transactionalEntityManager.findOne"
+  ],
+  "ChannelMemberService.invite": [
+    "UserService.findOne",
+    "ChannelService.findOne",
+    "channel.channelMembers.find",
+    "ChannelService.checkIsChannelOwner",
+    "ChannelMemberRepository.create",
+    "ChannelMemberRepository.save"
+  ],
+  "ChannelMuteService.mute": [
+    "ChannelService.findOne",
+    "ChannelService.checkIsChannelAdmin",
+    "ChannelService.checkIsChannelMember",
+    "ChannelService.checkIsNotChannelOwner",
+    "ChannelService.checkIsMe",
+    "channel.channelMutedMembers.find",
+    "ChannelMutedMemberRepository.create",
+    "ChannelMutedMemberRepository.save",
+    "ChatService.addMutedMember"
+  ],
+  "ChannelMuteService.unmute": [
+    "ChannelService.findOne",
+    "channel.channelMutedMembers.find",
+    "console.log",
+    "ChannelMutedMemberRepository.delete"
+  ],
+  "ChannelService.create": [
+    "ChannelRepository.findOne",
+    "bcrypt.genSalt",
+    "bcrypt.hash",
+    "EntityManager.transaction",
+    "manager.getRepository",
+    "manager.getRepository",
+    "channelRepository.create",
+    "channelRepository.save",
+    "channelMemberRepository.create",
+    "channelMemberRepository.save"
+  ],
+  "ChannelService.createDirectChannel": [
+    "UserService.findOne",
+    "console.log",
+    "ChannelRepository.findOne",
+    "console.log",
+    "console.log",
+    "console.log",
+    "alreadyExistChannel.channelMembers.find",
+    "console.log",
+    "console.log",
+    "ChannelMemberRepository.create",
+    "ChannelMemberRepository.save",
+    "EntityManager.transaction",
+    "ChannelRepository.create",
+    "manager.save",
+    "console.log",
+    "ChannelMemberRepository.create",
+    "ChannelMemberRepository.create",
+    "manager.save",
+    "manager.save"
+  ],
+  "ChannelService.update": [
+    "ChannelService.findOne",
+    "ChannelService.checkIsChannelOwner",
+    "ChannelRepository.findOne",
+    "bcrypt.genSalt",
+    "bcrypt.hash",
+    "ChannelRepository.save"
+  ],
+  "ChannelService.delete": [
+    "ChannelRepository.findOne",
+    "ChannelService.checkIsChannelOwner",
+    "ChannelKickService.kick",
+    "ChannelRepository.delete"
+  ],
+  "ChannelService.findAll": [
+    "ChannelRepository.find",
+    "console.log"
+  ],
+  "ChannelService.findOne": [
+    "ChannelRepository.findOne"
+  ],
+  "ChannelService.findJoinedChannel": [
+    "ChannelRepository.find",
+    "channels.filter",
+    "channel.channelMembers.some"
+  ],
+  "ChannelService.findJoinedDirectChannel": [
+    "ChannelRepository.find",
+    "directChannels.map",
+    "directChannels.filter",
+    "channel.channelMembers.some",
+    "Promise.all",
+    "directChannels.map",
+    "channel.name\n          .split('-').map",
+    "channel.name.split",
+    "channelMemberIds.find",
+    "UserService.findOne"
+  ],
+  "ChannelService.findOneChannelMember": [
+    "ChannelMemberRepository.findOne"
+  ],
+  "ChannelService.findAllChannelMember": [
+    "ChannelMemberRepository.find",
+    "console.log"
+  ],
+  "ChannelService.findAllNonChannelMember": [
+    "ChannelMemberRepository.find",
+    "console.log"
+  ],
+  "ChannelService.findAllChannelMutedMember": [
+    "ChannelMutedMemberRepository.find",
+    "console.log"
+  ],
+  "ChannelService.findAllChannelBannedMember": [
+    "ChannelBannedMemberRepository.find",
+    "console.log"
+  ],
+  "ChannelService.checkChannelAdmin": [
+    "ChannelMemberRepository.findOne"
+  ],
+  "ChannelService.updateChannelAdmin": [
+    "ChannelRepository.findOne",
+    "channel.channelMembers.find",
+    "ChannelMemberRepository.save"
+  ],
+  "ChannelService.checkIsChannelMember": [
+    "channel.channelMembers.find"
+  ],
+  "ChannelService.checkIsChannelAdmin": [
+    "channel.channelMembers.find"
+  ],
+  "ChannelService.checkIsChannelOwner": [],
+  "ChannelService.checkIsNotChannelOwner": [],
+  "ChannelService.checkIsMe": [],
+  "ChannelService.findAllBySearchKeyword": [
+    "ChannelRepository.find",
+    "ChannelRepository.find"
+  ],
+  "ChatService.removeConnectedMember": [
+    "Channels[channelId].connectedMembers.delete"
+  ],
+  "ChatService.initChannels": [
+    "ChannelService.findOne",
+    "channel.channelMutedMembers.forEach",
+    "Channels[channelId].mutedMembers.set"
+  ],
+  "ChatService.addConnectedMember": [
+    "ChannelService.findOneChannelMember",
+    "Channels[channelId].connectedMembers.set"
+  ],
+  "ChatService.getMemberInChannel": [
+    "Channels[channelId].connectedMembers.get"
+  ],
+  "ChatService.getConnectedMembers": [
+    "connectedMembers.forEach",
+    "membersInfo.push"
+  ],
+  "ChatService.addMutedMember": [
+    "channelId.toString",
+    "channel.mutedMembers.get",
+    "channel.mutedMembers.set"
+  ],
+  "ChatService.isMutedMember": [
+    "Channels[channelId].mutedMembers.get",
+    "ChatService.isExpiredMutedTime"
+  ],
+  "ChatService.isExpiredMutedTime": [
+    "now.getTime",
+    "createdAt.getTime"
+  ],
+  "ChatService.removeMutedMember": [
+    "ChannelMuteService.unmute",
+    "Channels[channelId].mutedMembers.delete"
+  ],
+  "ChatService.saveMessage": [
+    "ChatRepository.create",
+    "ChatRepository.save"
+  ],
+  "ChatService.getChatHistory": [
+    "ChatRepository\n      .createQueryBuilder('chat')\n      .leftJoinAndSelect('chat.user', 'user', 'user.id = chat.userId') // chat.userId는 실제 컬럼에 따라 달라질 수 있습니다.\n      .select(['chat.id', 'chat.message', 'user.id', 'user.name', 'user.image'])\n      .where('chat.channelId = :channelId', { channelId: channelId })\n      .orderBy('chat.id', 'DESC')\n      .skip((page - 1) * ITEMS_PER_PAGE)\n      .take(ITEMS_PER_PAGE).getMany",
+    "ChatRepository\n      .createQueryBuilder('chat')\n      .leftJoinAndSelect('chat.user', 'user', 'user.id = chat.userId') // chat.userId는 실제 컬럼에 따라 달라질 수 있습니다.\n      .select(['chat.id', 'chat.message', 'user.id', 'user.name', 'user.image'])\n      .where('chat.channelId = :channelId', { channelId: channelId })\n      .orderBy('chat.id', 'DESC')\n      .skip((page - 1) * ITEMS_PER_PAGE).take",
+    "ChatRepository\n      .createQueryBuilder('chat')\n      .leftJoinAndSelect('chat.user', 'user', 'user.id = chat.userId') // chat.userId는 실제 컬럼에 따라 달라질 수 있습니다.\n      .select(['chat.id', 'chat.message', 'user.id', 'user.name', 'user.image'])\n      .where('chat.channelId = :channelId', { channelId: channelId })\n      .orderBy('chat.id', 'DESC').skip",
+    "ChatRepository\n      .createQueryBuilder('chat')\n      .leftJoinAndSelect('chat.user', 'user', 'user.id = chat.userId') // chat.userId는 실제 컬럼에 따라 달라질 수 있습니다.\n      .select(['chat.id', 'chat.message', 'user.id', 'user.name', 'user.image'])\n      .where('chat.channelId = :channelId', { channelId: channelId }).orderBy",
+    "ChatRepository\n      .createQueryBuilder('chat')\n      .leftJoinAndSelect('chat.user', 'user', 'user.id = chat.userId') // chat.userId는 실제 컬럼에 따라 달라질 수 있습니다.\n      .select(['chat.id', 'chat.message', 'user.id', 'user.name', 'user.image']).where",
+    "ChatRepository\n      .createQueryBuilder('chat')\n      .leftJoinAndSelect('chat.user', 'user', 'user.id = chat.userId').select",
+    "ChatRepository\n      .createQueryBuilder('chat').leftJoinAndSelect",
+    "ChatRepository.createQueryBuilder",
+    "ret.reverse"
+  ],
+  "ChatService.findConnectedMember": [
+    "channel.connectedMembers.get"
+  ],
+  "DummyController.createDummyUser": [
+    "dummys.push"
+  ],
+  "DummyController.create": [
+    "DummyController.createDummyUser",
+    "res.push",
+    "UserService.create"
+  ],
+  "DummyController.getDummyAccessToken": [
+    "DummyController.createDummyUser",
+    "res.push",
+    "DummyService.getDummyAccessToken"
+  ],
+  "FollowController.follow": [
+    "FollowService.follow"
+  ],
+  "FollowController.unfollow": [
+    "FollowService.unfollow"
+  ],
+  "FollowController.getFollowingsByUserId": [
+    "FollowService.findAllFollowingsByUserId"
+  ],
+  "FollowService.follow": [
+    "UserRepository.findOne",
+    "user.followings.find",
+    "console.log",
+    "FollowRepository.create",
+    "FollowRepository.save"
+  ],
+  "FollowService.unfollow": [
+    "FollowRepository.findOne",
+    "FollowRepository.delete"
+  ],
+  "FollowService.findAllFollowingsByUserId": [
+    "FollowRepository.find"
+  ],
+  "GameController.findAll": [
+    "console.log",
+    "GameService.findAll"
+  ],
+  "GameController.findOne": [
+    "GameService.findOne"
+  ],
+  "GameController.getUserMatchHistory": [
+    "GameService.getUserMatchHistory"
+  ],
+  "GameService.findAll": [
+    "GameRepository.find"
+  ],
+  "GameService.findOne": [
+    "GameRepository.findOne"
+  ],
+  "GameService.getUserMatchHistory": [
+    "GameRecordRepository.find",
+    "gameRecordEntities.map",
+    "GameRepository.findBy",
+    "gameEntities.reverse",
+    "gameEntities.splice"
+  ],
+  "GameService.saveGameResult": [
+    "GameRepository.create",
+    "GameRepository.save",
+    "console.log",
+    "GameRecordRepository.create",
+    "GameRecordRepository.create",
+    "GameRecordRepository.save",
+    "GameRecordRepository.save",
+    "console.log",
+    "console.log"
+  ],
+  "GameService.test": [
+    "GameRepository.insert",
+    "Math.round",
+    "Math.random",
+    "Math.round",
+    "Math.random",
+    "Math.round",
+    "Math.random",
+    "Math.round",
+    "Math.random"
+  ],
+  "UserController.create": [
+    "UserService.create"
+  ],
+  "UserController.getUserRanking": [
+    "UserService.getUserRanking"
+  ],
+  "UserController.getUserRankingById": [
+    "console.log",
+    "UserService.getUserRankingById"
+  ],
+  "UserController.findOne": [
+    "UserService.findOne"
+  ],
+  "UserController.getPaginatedUsers": [
+    "console.log",
+    "UserService.getPaginatedUsers"
+  ],
+  "UserController.findUserById": [
+    "UserService.findOne"
+  ],
+  "UserController.findUserByNameOrId": [
+    "UserService.findOneByNameOrId"
+  ],
+  "UserController.update": [
+    "UserService.update"
+  ],
+  "UserController.checkDuplicateName": [
+    "UserService.checkDuplicateName"
+  ],
+  "UserController.uploadFile": [
+    "UserService.updateImage"
+  ],
+  "UserService.create": [
+    "UserRepository.create",
+    "UserRepository.save"
+  ],
+  "UserService.findAll": [],
+  "UserService.findOne": [
+    "UserRepository.findOne"
+  ],
+  "UserService.findOneByNameOrId": [
+    "UserRepository.findOne",
+    "UserRepository.findOne"
+  ],
+  "UserService.findOneImg": [
+    "UserRepository.findOne"
+  ],
+  "UserService.update": [
+    "UserRepository.findOne",
+    "UserRepository.save"
+  ],
+  "UserService.checkDuplicateName": [
+    "UserRepository.findOne"
+  ],
+  "UserService.updateImage": [
+    "UserRepository.findOne",
+    "path.join",
+    "extension.split",
+    "fs.rename",
+    "console.log",
+    "UserRepository.save"
+  ],
+  "UserService.updateUserStatus": [
+    "UserRepository.findOne",
+    "UserRepository.save"
+  ],
+  "UserService.findUserStatusById": [
+    "UserRepository.findOne"
+  ],
+  "UserService.updateMmr": [
+    "UserRepository.findOne",
+    "UserRepository.save"
+  ],
+  "UserService.getUserRanking": [
+    "UserRepository.find"
+  ],
+  "UserService.getUserRankingById": [
+    "UserRepository.find",
+    "ranking.findIndex"
+  ],
+  "UserService.getPaginatedUsers": [
+    "UserRepository.find",
+    "UserRepository.find"
+  ],
+  "UserService.remove": []
+}

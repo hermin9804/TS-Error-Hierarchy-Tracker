@@ -2,9 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import ErrorHierarchyTree from "./ErrorHierarchyTree";
 import transformDataForD3 from "./transformDataForD3";
-import { methodDependencyList, throwAbleErrorList } from "./App";
 
-const TreePage = () => {
+const TreePage = ({ methodDependencyList, throwAbleErrorList }) => {
   const { treeId } = useParams();
   const d3Data = transformDataForD3(methodDependencyList, throwAbleErrorList);
 
@@ -12,7 +11,7 @@ const TreePage = () => {
 
   return (
     <div>
-      <h1> Error Hierarchy Tree - {treeId}</h1>
+      <h1>Error Hierarchy Tree - {treeId}</h1>
       {treeData && <ErrorHierarchyTree data={treeData} />}
     </div>
   );
