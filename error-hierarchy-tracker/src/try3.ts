@@ -267,13 +267,14 @@ function findUnnecessaryHandledErrors(
 
 // Main Execution Function
 async function main() {
-  const projectRoot = "../test-app/src";
+  // const projectRoot = "../test-app/src";
+  const projectRoot = "../ft_transcendence_back/src";
   const targetFiles = findFilesInDir(
     projectRoot,
     /\.controller\.ts$|\.service\.ts$|\.strategy\.ts$/
   );
 
-  console.log("targetFiles", targetFiles);
+  // console.log("targetFiles", targetFiles);
 
   let methodDependencyList = {};
   let throwAbleErrorList = {};
@@ -315,34 +316,51 @@ async function main() {
     JSON.stringify(throwAbleErrorList, null, 2)
   );
 
-  console.log("handledErrorList", JSON.stringify(handledErrorList, null, 2));
+  // console.log("handledErrorList", JSON.stringify(handledErrorList, null, 2));
 
   const aggregatedControllerErrors = aggregateControllerErrors(
     methodDependencyList,
     throwAbleErrorList
   );
-  console.log(
-    "Aggregated Controller Errors:",
-    JSON.stringify(aggregatedControllerErrors, null, 2)
-  );
+  // console.log(
+  //   "Aggregated Controller Errors:",
+  //   JSON.stringify(aggregatedControllerErrors, null, 2)
+  // );
 
   const unhandledErrorList = findUnhandledErrors(
     aggregatedControllerErrors,
     handledErrorList
   );
-  console.log(
-    "Unhandled Error List:",
-    JSON.stringify(unhandledErrorList, null, 2)
-  );
+  // console.log(
+  //   "Unhandled Error List:",
+  //   JSON.stringify(unhandledErrorList, null, 2)
+  // );
 
   const unnecessaryHandledErrors = findUnnecessaryHandledErrors(
     aggregatedControllerErrors,
     handledErrorList
   );
-  console.log(
-    "Unnecessary Handled Errors:",
-    JSON.stringify(unnecessaryHandledErrors, null, 2)
+  // console.log(
+  //   "Unnecessary Handled Errors:",
+  //   JSON.stringify(unnecessaryHandledErrors, null, 2)
+  // );
+
+  // methodDependencyList 와  throwAbleErrorList 를 json 파일로 저장
+
+  const methodDependencyListJson = JSON.stringify(
+    methodDependencyList,
+    null,
+    2
   );
+  const throwAbleErrorListJson = JSON.stringify(throwAbleErrorList, null, 2);
+
+  fs.writeFileSync(
+    "./methodDependencyList.json",
+    methodDependencyListJson,
+    "utf8"
+  );
+
+  fs.writeFileSync("./throwAbleErrorList.json", throwAbleErrorListJson, "utf8");
 }
 
 // Run the Main Function
