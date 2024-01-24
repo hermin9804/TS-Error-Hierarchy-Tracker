@@ -1,8 +1,9 @@
 import React from "react";
-import ErrorHierarchyTree from "./ErrorHierarchyTree";
-import transformDataForD3 from "./transformDataForD3";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./HomePage";
+import TreePage from "./TreePage";
 
-const methodDependencyList = {
+export const methodDependencyList = {
   "AppController.snsLogin": ["AppService.snsLogin"],
   "AppService.snsLogin": ["SnsAuthService.validate"],
   "KakaoStrategy.validate": [],
@@ -11,9 +12,13 @@ const methodDependencyList = {
     "KakaoStrategy.validate",
     "NaverStrategy.validate",
   ],
+  "UserController.getUser": ["UserService.findUser"],
+  "UserService.findUser": ["UserRepository.findUser"],
+  "UserController.patchUser": ["UserService.updateUser"],
+  "UserService.updateUser": ["UserRepository.updateUser"],
 };
 
-const throwAbleErrorList = {
+export const throwAbleErrorList = {
   "AppController.snsLogin": [],
   "AppService.snsLogin": [],
   "KakaoStrategy.validate": [
@@ -25,14 +30,13 @@ const throwAbleErrorList = {
 };
 
 const App = () => {
-  const d3Data = transformDataForD3(methodDependencyList, throwAbleErrorList);
-  console.log(JSON.stringify(d3Data, null, 2));
-
   return (
-    <div>
-      <h1>Error Hierarchy Visualization</h1>
-      <ErrorHierarchyTree data={d3Data[0]} />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/tree/:treeId" element={<TreePage />} />
+        <Route path="/" element={<HomePage />} />
+      </Routes>
+    </Router>
   );
 };
 
