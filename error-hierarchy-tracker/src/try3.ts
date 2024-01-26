@@ -71,7 +71,12 @@ function createMethodDependencyList(sourceFile: ts.SourceFile): {
               }
 
               const fullDependencyName = `${dependencyClassName}.${dependencyMethodName}`;
-              dependencyList[fullMethodName].push(fullDependencyName);
+
+              if (
+                !dependencyList[fullMethodName].includes(fullDependencyName)
+              ) {
+                dependencyList[fullMethodName].push(fullDependencyName);
+              }
             }
           );
         }
