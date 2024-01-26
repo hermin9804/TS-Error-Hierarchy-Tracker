@@ -1,28 +1,28 @@
 import React from "react";
 import { Tree } from "react-d3-tree";
 
-const renderCustomNodeElement = ({ nodeDatum, toggleNode }) => (
-  <g>
-    <circle r={15} fill="#999" onClick={toggleNode} />
-
-    <text fill="black" strokeWidth="1" x={20} y={20} textAnchor="start">
-      {nodeDatum.name}
-    </text>
-
-    {nodeDatum.description &&
-      nodeDatum.description.map((error, index) => (
-        <text
-          fill="black"
-          strokeWidth="1"
-          x={20}
-          y={40 + index * 20}
-          textAnchor="start"
-        >
-          {error}
-        </text>
-      ))}
-  </g>
-);
+const renderCustomNodeElement = ({ nodeDatum, toggleNode }) => {
+  return (
+    <g>
+      <circle r={15} fill="#999" onClick={toggleNode} />
+      <text fill="black" strokeWidth="1" x={20} y={20} textAnchor="start">
+        {nodeDatum.name}
+      </text>
+      {nodeDatum.description &&
+        nodeDatum.description.map((error, index) => (
+          <text
+            fill="black"
+            strokeWidth="1"
+            x={20}
+            y={40 + index * 20}
+            textAnchor="start"
+          >
+            {error}
+          </text>
+        ))}
+    </g>
+  );
+};
 
 const ErrorHierarchyTree = ({ data }) => {
   const treeWrapperStyle = {
@@ -36,8 +36,8 @@ const ErrorHierarchyTree = ({ data }) => {
         data={data}
         orientation="horizontal"
         translate={{ x: 300, y: 300 }}
-        nodeSize={{ x: 300, y: 200 }} // Adjust the node size to control spacing
-        separation={{ siblings: 1 }}
+        nodeSize={{ x: 300, y: 200 }}
+        separation={{ siblings: 0.5, nonSiblings: 0.5 }}
         renderCustomNodeElement={renderCustomNodeElement}
       />
     </div>

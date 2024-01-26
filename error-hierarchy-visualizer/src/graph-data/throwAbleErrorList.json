@@ -1,210 +1,33 @@
 {
-  "AuthController.signIn": [],
-  "AuthController.signInWithTwoFactor": [],
-  "AuthController.verifyTwoFactorCode": [],
-  "AuthService.signIn": [],
-  "JwtStrategy.validate": [],
-  "EmailService.sendMemberJoinVerification": [],
-  "FtAuthService.getAccessToken": [
-    "new InternalServerErrorException()"
+  "AuthController.snsLogin": [],
+  "AuthController.refreshToken": [],
+  "AuthService.snsLogin": [],
+  "AuthService.refreshToken": [],
+  "AuthService.createAccessToken": [],
+  "AuthService.createRefreshToken": [],
+  "AuthService.verifyRefreshToken": [
+    "AUTH_REFRESH_TOKEN_UNAUTHORIZED",
+    "AUTH_REFRESH_TOKEN_UNAUTHORIZED"
   ],
-  "FtAuthService.getUserInfo": [],
-  "TfaAuthService.signInTwoFactorToken": [],
-  "TfaAuthService.verifyTwoFactorCode": [
-    "new UnauthorizedException('invalid twoFactorCode')",
-    "new UnauthorizedException('twoFactorCode has expired')"
-  ],
-  "TfaAuthService.authTwoFactorToken": [
-    "new UnauthorizedException('twoFactor is not validate')",
-    "new UnauthorizedException('Invalid twoFactorToken')"
-  ],
-  "BlockController.block": [],
-  "BlockController.unBlock": [],
-  "BlockController.findAllBlockedUser": [],
-  "BlockController.findAllBlockedUserByUserId": [],
-  "BlockController.findAllBlockedUserByBlockingId": [],
-  "BlockService.block": [
-    "new NotFoundException('타겟이 존재하지 않는 유저입니다.')",
-    "new BadRequestException('본인은 블락할 수 없습니다.')"
-  ],
-  "BlockService.unBlock": [
-    "new NotFoundException('블락한 적 없는 유저입니다.')"
-  ],
-  "BlockService.findAllBlockedUser": [],
-  "BlockService.findAllBlockedUserByUserId": [],
-  "BlockService.findAllBlockedUserByBlockingId": [],
-  "ChannelController.findJoinedChannel": [],
-  "ChannelController.findOneJoinedChannel": [],
-  "ChannelController.create": [],
-  "ChannelController.createDirectChannel": [],
-  "ChannelController.findJoinedDirectChannel": [],
-  "ChannelController.update": [],
-  "ChannelController.delete": [],
-  "ChannelController.findAll": [],
-  "ChannelController.findAllBySearchKeyword": [],
-  "ChannelController.findOne": [],
-  "ChannelController.findAllChannelMember": [],
-  "ChannelController.join": [],
-  "ChannelController.exit": [],
-  "ChannelController.invite": [],
-  "ChannelController.findAllChannelMutedMember": [],
-  "ChannelController.mute": [],
-  "ChannelController.findAllChannelBannedMember": [],
-  "ChannelController.ban": [],
-  "ChannelController.deleteChannelBannedMember": [],
-  "ChannelController.kick": [],
-  "ChannelController.checkChannelAdmin": [],
-  "ChannelController.updateChannelAdmin": [],
-  "ChannelBanService.ban": [],
-  "ChannelBanService.deleteChannelBannedMember": [
-    "new NotFoundException('존재하지 않는 채널 차단 멤버입니다.')"
-  ],
-  "ChannelKickService.kick": [],
-  "ChannelMemberService.join": [
-    "new BadRequestException('채널 인원이 가득 찼습니다.')",
-    "new BadRequestException('비밀번호가 틀렸습니다.')",
-    "new BadRequestException('비밀 채널입니다.')",
-    "new BadRequestException('차단된 사용자입니다.')"
-  ],
-  "ChannelMemberService.exit": [
-    "new Error('Channel not found')"
-  ],
-  "ChannelMemberService.invite": [
-    "new NotFoundException('존재하지 않는 사용자입니다.')",
-    "new ConflictException('이미 채널에 참여한 사용자입니다.')"
-  ],
-  "ChannelMuteService.mute": [],
-  "ChannelMuteService.unmute": [],
-  "ChannelService.create": [
-    "new BadRequestException('이미 존재하는 채널 이름입니다.')",
-    "new InternalServerErrorException(\n        '비밀번호가 필요한 채널을 생성하려면 비밀번호를 입력해야 합니다.',\n      )"
-  ],
-  "ChannelService.createDirectChannel": [
-    "new BadRequestException(\n        '자신에게는 direct 채널을 생성할 수 없습니다.',\n      )",
-    "new NotFoundException('존재하지 않는 사용자입니다.')"
-  ],
-  "ChannelService.update": [
-    "DM",
-    "DM",
-    "new BadRequestException('이미 존재하는 채널 이름입니다.')",
-    "new InternalServerErrorException(\n            '비밀번호가 필요한 채널을 생성하려면 비밀번호를 입력해야 합니다.',\n          )"
-  ],
-  "ChannelService.delete": [
-    "new NotFoundException('존재하지 않는 채널입니다.')"
-  ],
-  "ChannelService.findAll": [],
-  "ChannelService.findOne": [
-    "new NotFoundException('존재하지 않는 채널입니다.')"
-  ],
-  "ChannelService.findJoinedChannel": [],
-  "ChannelService.findJoinedDirectChannel": [],
-  "ChannelService.findOneChannelMember": [
-    "new NotFoundException('존재하지 않는 채널 멤버입니다.')"
-  ],
-  "ChannelService.findAllChannelMember": [],
-  "ChannelService.findAllNonChannelMember": [],
-  "ChannelService.findAllChannelMutedMember": [],
-  "ChannelService.findAllChannelBannedMember": [],
-  "ChannelService.checkChannelAdmin": [
-    "new NotFoundException('존재하지 않는 채널 멤버입니다.')",
-    "new BadRequestException('채널 관리자가 아닙니다.')"
-  ],
-  "ChannelService.updateChannelAdmin": [
-    "new NotFoundException('존재하지 않는 채널입니다.')",
-    "new BadRequestException('채널 소유자가 아닙니다.')",
-    "new BadRequestException('채널 소유자입니다.')",
-    "new NotFoundException('존재하지 않는 채널 멤버입니다.')"
-  ],
-  "ChannelService.checkIsChannelMember": [
-    "new NotFoundException('채널 멤버가 아닙니다.')"
-  ],
-  "ChannelService.checkIsChannelAdmin": [
-    "new NotFoundException('채널 멤버가 아닙니다.')",
-    "new BadRequestException('채널 관리자가 아닙니다.')"
-  ],
-  "ChannelService.checkIsChannelOwner": [
-    "new BadRequestException('채널 소유자가 아닙니다.')"
-  ],
-  "ChannelService.checkIsNotChannelOwner": [
-    "new BadRequestException(\n        '채널 소유자에게는 해당 작업을 수행할 수 없습니다.',\n      )"
-  ],
-  "ChannelService.checkIsMe": [
-    "new BadRequestException(\n        '자신에게는 해당 작업을 수행할 수 없습니다.',\n      )"
-  ],
-  "ChannelService.findAllBySearchKeyword": [],
-  "ChatService.removeConnectedMember": [],
-  "ChatService.initChannels": [
-    "new NotFoundException('채널이 존재하지 않습니다.')"
-  ],
-  "ChatService.addConnectedMember": [
-    "new NotFoundException('채널에 참여하지 않은 유저입니다.')"
-  ],
-  "ChatService.getMemberInChannel": [],
-  "ChatService.getConnectedMembers": [],
-  "ChatService.addMutedMember": [],
-  "ChatService.isMutedMember": [],
-  "ChatService.isExpiredMutedTime": [],
-  "ChatService.removeMutedMember": [],
-  "ChatService.saveMessage": [],
-  "ChatService.getChatHistory": [],
-  "ChatService.findConnectedMember": [],
-  "DummyController.createDummyUser": [],
-  "DummyController.create": [],
-  "DummyController.getDummyAccessToken": [],
-  "FollowController.follow": [],
-  "FollowController.unfollow": [],
-  "FollowController.getFollowingsByUserId": [],
-  "FollowService.follow": [
-    "new NotFoundException('타겟이 존재하지 않는 유저입니다.')",
-    "new BadRequestException('본인은 팔로우할 수 없습니다.')"
-  ],
-  "FollowService.unfollow": [
-    "new NotFoundException('팔로우한 적 없는 유저입니다.')"
-  ],
-  "FollowService.findAllFollowingsByUserId": [],
-  "GameController.findAll": [],
-  "GameController.findOne": [],
-  "GameController.getUserMatchHistory": [],
-  "GameService.findAll": [],
-  "GameService.findOne": [
-    "new NotFoundException('찾고자 하는 게임이 없습니다.')"
-  ],
-  "GameService.getUserMatchHistory": [],
-  "GameService.saveGameResult": [],
-  "GameService.test": [],
-  "UserController.create": [],
-  "UserController.getUserRanking": [],
-  "UserController.getUserRankingById": [],
-  "UserController.findOne": [],
-  "UserController.getPaginatedUsers": [],
-  "UserController.findUserById": [],
-  "UserController.findUserByNameOrId": [],
-  "UserController.update": [],
-  "UserController.checkDuplicateName": [],
-  "UserController.uploadFile": [],
-  "UserService.create": [
-    "new InternalServerErrorException(error.message)"
-  ],
-  "UserService.findAll": [],
-  "UserService.findOne": [
-    "new NotFoundException('User not found')"
-  ],
-  "UserService.findOneByNameOrId": [
-    "new NotFoundException('User not found')"
-  ],
-  "UserService.findOneImg": [],
-  "UserService.update": [],
-  "UserService.checkDuplicateName": [],
-  "UserService.updateImage": [],
-  "UserService.updateUserStatus": [],
-  "UserService.findUserStatusById": [
-    "new NotFoundException('User not found')"
-  ],
-  "UserService.updateMmr": [],
-  "UserService.getUserRanking": [],
-  "UserService.getUserRankingById": [
-    "new NotFoundException('User not found')"
-  ],
-  "UserService.getPaginatedUsers": [],
-  "UserService.remove": []
+  "AuthService.testPrintAllRedisData": [],
+  "GoogleStrategy.validate": ["SNS_AUTH_NAVER_GOOLE_LOGIN_FAIL"],
+  "GoogleStrategy.getAccessToken": [],
+  "GoogleStrategy.getUserData": [],
+  "GoogleStrategy.convertUserDataToCreateUserDto": [],
+  "KakaoStrategy.validate": ["SNS_AUTH_KAKAO_LOGIN_FAIL"],
+  "KakaoStrategy.getAccessToken": [],
+  "KakaoStrategy.getUserData": [],
+  "KakaoStrategy.convertUserDataToCreateUserDto": [],
+  "NaverStrategy.validate": ["SNS_AUTH_NAVER_LOGIN_FAIL"],
+  "NaverStrategy.getAccessToken": [],
+  "NaverStrategy.getUserData": [],
+  "NaverStrategy.convertUserDataToCreateUserDto": [],
+  "SnsAuthService.validate": ["SNS_AUTH_NOT_SUPPORTED_SNS_PROVIDER"],
+  "UsersController.postUser": [],
+  "UsersController.patchUser": [],
+  "UsersController.getMe": [],
+  "UsersService.createUser": [],
+  "UsersService.updateUser": ["USERS_NOT_FOUND"],
+  "UsersService.findUserBySnsIdAndProvider": [],
+  "UsersService.findUserById": []
 }
