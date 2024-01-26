@@ -1,7 +1,8 @@
 {
-  "AuthController.snsLogin": ["TypedRoute.Post", "AuthService.snsLogin"],
+  "AuthController.snsLogin": [
+    "AuthService.snsLogin"
+  ],
   "AuthController.refreshToken": [
-    "TypedRoute.Post",
     "AuthService.refreshToken"
   ],
   "AuthService.snsLogin": [
@@ -9,67 +10,82 @@
     "UsersService.findUserBySnsIdAndProvider",
     "UsersService.createUser",
     "AuthService.createAccessToken",
-    "AuthService.createRefreshToken",
-    "RedisClient.set"
+    "AuthService.createRefreshToken"
   ],
   "AuthService.refreshToken": [
     "AuthService.verifyRefreshToken",
     "AuthService.createAccessToken",
-    "AuthService.createRefreshToken",
-    "RedisClient.set"
+    "AuthService.createRefreshToken"
   ],
-  "AuthService.createAccessToken": ["JwtService.sign", "ConfigService.get"],
-  "AuthService.createRefreshToken": ["JwtService.sign", "ConfigService.get"],
+  "AuthService.createAccessToken": [
+    "JwtService.sign",
+    "ConfigService.get"
+  ],
+  "AuthService.createRefreshToken": [
+    "JwtService.sign",
+    "ConfigService.get"
+  ],
   "AuthService.verifyRefreshToken": [
     "JwtService.decode",
-    "RedisClient.get",
     "JwtService.verify",
-    "ConfigService.get",
-    "RedisClient.del"
+    "ConfigService.get"
   ],
-  "AuthService.testPrintAllRedisData": [
-    "console.log",
-    "RedisClient.keys",
-    "Promise.all",
-    "keys.map",
-    "RedisClient.get",
-    "keyValuePairs.forEach"
-  ],
+  "AuthService.testPrintAllRedisData": [],
   "GoogleStrategy.validate": [
     "GoogleStrategy.getAccessToken",
     "GoogleStrategy.getUserData",
-    "console.log",
     "GoogleStrategy.convertUserDataToCreateUserDto"
   ],
-  "GoogleStrategy.getAccessToken": ["ConfigService.get", "HttpService.post"],
-  "GoogleStrategy.getUserData": ["HttpService.get"],
+  "GoogleStrategy.getAccessToken": [
+    "ConfigService.get",
+    "HttpService.post"
+  ],
+  "GoogleStrategy.getUserData": [
+    "HttpService.get"
+  ],
   "GoogleStrategy.convertUserDataToCreateUserDto": [],
   "KakaoStrategy.validate": [
     "KakaoStrategy.getAccessToken",
     "KakaoStrategy.getUserData",
     "KakaoStrategy.convertUserDataToCreateUserDto"
   ],
-  "KakaoStrategy.getAccessToken": ["ConfigService.get", "HttpService.post"],
-  "KakaoStrategy.getUserData": ["HttpService.get"],
-  "KakaoStrategy.convertUserDataToCreateUserDto": ["data.id.toString"],
+  "KakaoStrategy.getAccessToken": [
+    "ConfigService.get",
+    "HttpService.post"
+  ],
+  "KakaoStrategy.getUserData": [
+    "HttpService.get"
+  ],
+  "KakaoStrategy.convertUserDataToCreateUserDto": [],
   "NaverStrategy.validate": [
     "NaverStrategy.getAccessToken",
     "NaverStrategy.getUserData",
     "NaverStrategy.convertUserDataToCreateUserDto"
   ],
-  "NaverStrategy.getAccessToken": ["ConfigService.get", "HttpService.post"],
-  "NaverStrategy.getUserData": ["HttpService.get"],
+  "NaverStrategy.getAccessToken": [
+    "ConfigService.get",
+    "HttpService.post"
+  ],
+  "NaverStrategy.getUserData": [
+    "HttpService.get"
+  ],
   "NaverStrategy.convertUserDataToCreateUserDto": [],
   "SnsAuthService.validate": [
     "KakaoStrategy.validate",
     "NaverStrategy.validate",
     "GoogleStrategy.validate"
   ],
-  "UsersController.postUser": ["TypedRoute.Post", "UsersService.createUser"],
-  "UsersController.patchUser": ["TypedRoute.Patch", "UsersService.updateUser"],
-  "UsersController.getMe": ["TypedRoute.Get", "UsersService.findUserById"],
-  "UsersService.createUser": ["UserRepository.create", "UserRepository.save"],
-  "UsersService.updateUser": ["UserRepository.findOne", "UserRepository.save"],
-  "UsersService.findUserBySnsIdAndProvider": ["UserRepository.findOne"],
-  "UsersService.findUserById": ["UserRepository.findOne"]
+  "UsersController.postUser": [
+    "UsersService.createUser"
+  ],
+  "UsersController.patchUser": [
+    "UsersService.updateUser"
+  ],
+  "UsersController.getMe": [
+    "UsersService.findUserById"
+  ],
+  "UsersService.createUser": [],
+  "UsersService.updateUser": [],
+  "UsersService.findUserBySnsIdAndProvider": [],
+  "UsersService.findUserById": []
 }

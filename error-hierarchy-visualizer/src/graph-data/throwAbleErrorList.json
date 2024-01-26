@@ -6,28 +6,50 @@
   "AuthService.createAccessToken": [],
   "AuthService.createRefreshToken": [],
   "AuthService.verifyRefreshToken": [
-    "AUTH_REFRESH_TOKEN_UNAUTHORIZED",
-    "AUTH_REFRESH_TOKEN_UNAUTHORIZED"
+    "new BusinessException(AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED)",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )",
+    "new BusinessException(\n        AuthErrorMap.AUTH_REFRESH_TOKEN_UNAUTHORIZED,\n        e.message,\n      )"
   ],
   "AuthService.testPrintAllRedisData": [],
-  "GoogleStrategy.validate": ["SNS_AUTH_NAVER_GOOLE_LOGIN_FAIL"],
+  "GoogleStrategy.validate": [
+    "new BusinessException(\n        SnsAuthErrorMap.SNS_AUTH_NAVER_GOOLE_LOGIN_FAIL,\n        e.response.data,\n      )"
+  ],
   "GoogleStrategy.getAccessToken": [],
   "GoogleStrategy.getUserData": [],
   "GoogleStrategy.convertUserDataToCreateUserDto": [],
-  "KakaoStrategy.validate": ["SNS_AUTH_KAKAO_LOGIN_FAIL"],
+  "KakaoStrategy.validate": [
+    "new BusinessException(\n        SnsAuthErrorMap.SNS_AUTH_KAKAO_LOGIN_FAIL,\n        e.response.data,\n      )"
+  ],
   "KakaoStrategy.getAccessToken": [],
   "KakaoStrategy.getUserData": [],
   "KakaoStrategy.convertUserDataToCreateUserDto": [],
-  "NaverStrategy.validate": ["SNS_AUTH_NAVER_LOGIN_FAIL"],
+  "NaverStrategy.validate": [
+    "new BusinessException(\n        SnsAuthErrorMap.SNS_AUTH_NAVER_LOGIN_FAIL,\n        e.response.data,\n      )"
+  ],
   "NaverStrategy.getAccessToken": [],
   "NaverStrategy.getUserData": [],
   "NaverStrategy.convertUserDataToCreateUserDto": [],
-  "SnsAuthService.validate": ["SNS_AUTH_NOT_SUPPORTED_SNS_PROVIDER"],
+  "SnsAuthService.validate": [
+    "new BusinessException(\n          SnsAuthErrorMap.SNS_AUTH_NOT_SUPPORTED_SNS_PROVIDER,\n        )"
+  ],
   "UsersController.postUser": [],
   "UsersController.patchUser": [],
   "UsersController.getMe": [],
   "UsersService.createUser": [],
-  "UsersService.updateUser": ["USERS_NOT_FOUND"],
+  "UsersService.updateUser": [
+    "new BusinessException(UsersErrorMap.USERS_NOT_FOUND)"
+  ],
   "UsersService.findUserBySnsIdAndProvider": [],
   "UsersService.findUserById": []
 }
