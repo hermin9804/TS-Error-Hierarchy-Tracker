@@ -84,7 +84,17 @@ function createMethodDependencyList(sourceFile: ts.SourceFile): {
     }
   });
 
+  for (const [key, value] of Object.entries(dependencyList)) {
+    const filteredValue = value.filter((v) => hasClassSuffix(v));
+    dependencyList[key] = filteredValue;
+  }
   return dependencyList;
+}
+
+function hasClassSuffix(className: string): boolean {
+  const suffixes = ["Controller", "Service", "Strategy"];
+  const hasSuffix = suffixes.some((suffix) => className.includes(suffix));
+  return hasSuffix;
 }
 
 function findServiceMethodCalls(
@@ -97,6 +107,7 @@ function findServiceMethodCalls(
   ) {
     const serviceClassName = node.expression.expression.getText();
     const serviceMethodName = node.expression.name.getText();
+
     callback(serviceClassName, serviceMethodName);
   }
   ts.forEachChild(node, (childNode) =>
@@ -131,21 +142,13 @@ function findMethodErrors(sourceFile: ts.SourceFile): {
   return errors;
 }
 
-function extractPattern(inputString: string): string | null {
-  const pattern = /[A-Z_]+/g;
-  const matches = inputString.match(pattern);
-  const snakes = matches?.filter((match) => match.length > 1);
-  return snakes ? snakes[0] : null;
-}
-
 function findThrowStatements(
   node: ts.Node,
   callback: (errorMessage: string) => void
 ) {
   if (ts.isThrowStatement(node) && node.expression) {
     const errorMessage = node.expression.getText();
-    const cleanedErrorMessage = extractPattern(errorMessage) || errorMessage;
-    callback(cleanedErrorMessage);
+    callback(errorMessage);
   }
   ts.forEachChild(node, (childNode) =>
     findThrowStatements(childNode, callback)
@@ -272,8 +275,8 @@ function findUnnecessaryHandledErrors(
 
 // Main Execution Function
 async function main() {
-  // const projectRoot = "../test-app/src";
-  const projectRoot = "../ft_transcendence_back/src";
+  // const projectRoot = "..//test-app/test-app-nest/src";
+  const projectRoot = "../test-app/najuha-v2-be/src";
   const targetFiles = findFilesInDir(
     projectRoot,
     /\.controller\.ts$|\.service\.ts$|\.strategy\.ts$/
@@ -360,12 +363,16 @@ async function main() {
   const throwAbleErrorListJson = JSON.stringify(throwAbleErrorList, null, 2);
 
   fs.writeFileSync(
-    "./methodDependencyList.json",
+    "./result/methodDependencyList.json",
     methodDependencyListJson,
     "utf8"
   );
 
-  fs.writeFileSync("./throwAbleErrorList.json", throwAbleErrorListJson, "utf8");
+  fs.writeFileSync(
+    "./result/throwAbleErrorList.json",
+    throwAbleErrorListJson,
+    "utf8"
+  );
 }
 
 // Run the Main Function
