@@ -1,10 +1,13 @@
 import { StringArrayMap } from "../types/stringArrayMap";
 
-export function aggregateControllerErrorMap(
+// const RootClassSuffixList = ["Controller", "Service", "Strategy"];
+const RootClassSuffixList = ["Controller"];
+
+export function assembleHierarchyErrorMap(
   methodDependencyGraph: StringArrayMap,
   methodThrowErrorMap: StringArrayMap
 ): StringArrayMap {
-  const aggregatedErrors: StringArrayMap = {};
+  const assembledErrors: StringArrayMap = {};
 
   function collectErrors(
     method: string,
@@ -31,12 +34,15 @@ export function aggregateControllerErrorMap(
     return Array.from(errors);
   }
 
-  // Consider methods from any class ending with 'Controller'
+  // Consider methods from any class type specified in RootClassSuffixList
   Object.keys(methodDependencyGraph).forEach((method) => {
-    if (method.includes("Controller.")) {
-      aggregatedErrors[method] = collectErrors(method);
+    const isRootClassMethod = RootClassSuffixList.some((suffix) =>
+      method.includes(`${suffix}.`)
+    );
+    if (isRootClassMethod) {
+      assembledErrors[method] = collectErrors(method);
     }
   });
 
-  return aggregatedErrors;
+  return assembledErrors;
 }

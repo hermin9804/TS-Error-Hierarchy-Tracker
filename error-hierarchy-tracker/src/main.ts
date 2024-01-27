@@ -5,7 +5,7 @@ import { createMethodThrowErrorMap } from "./createMethodThrowErrorMap";
 import { createHandledErrorMap } from "./createHandledErrorMap";
 import { findFilesInDir } from "./findFilesInDir";
 import { StringArrayMap } from "../types/stringArrayMap";
-import { aggregateControllerErrorMap } from "./aggregateControllerErrorMap";
+import { assembleHierarchyErrorMap } from "./assembleHierarchyErrorMap";
 import { createUnhandledErrorMap } from "./createUnhandledErrorMap";
 import { createUnnecessaryHandledErrorMap } from "./createUnnecessaryHandledErrorMap";
 
@@ -51,29 +51,29 @@ async function main() {
     }
   }
 
-  console.log(
-    "methodDependencyGraph",
-    JSON.stringify(methodDependencyGraph, null, 2)
-  );
+  // console.log(
+  //   "methodDependencyGraph",
+  //   JSON.stringify(methodDependencyGraph, null, 2)
+  // );
 
-  console.log(
-    "methodThrowErrorMap",
-    JSON.stringify(methodThrowErrorMap, null, 2)
-  );
+  // console.log(
+  //   "methodThrowErrorMap",
+  //   JSON.stringify(methodThrowErrorMap, null, 2)
+  // );
 
-  console.log("handledErrorMap", JSON.stringify(handledErrorMap, null, 2));
+  // console.log("handledErrorMap", JSON.stringify(handledErrorMap, null, 2));
 
-  const aggregatedControllerErrorMap = aggregateControllerErrorMap(
+  const assembledrrorMap = assembleHierarchyErrorMap(
     methodDependencyGraph,
     methodThrowErrorMap
   );
-  // console.log(
-  //   "Aggregated Controller Error Map:",
-  //   JSON.stringify(aggregatedControllerErrorMap, null, 2)
-  // );
+  console.log(
+    "Assembled Error Map:",
+    JSON.stringify(assembledrrorMap, null, 2)
+  );
 
   const unhandledErrorMap = createUnhandledErrorMap(
-    aggregatedControllerErrorMap,
+    assembledrrorMap,
     handledErrorMap
   );
   // console.log(
@@ -82,7 +82,7 @@ async function main() {
   // );
 
   const unnecessaryHandledErrorMap = createUnnecessaryHandledErrorMap(
-    aggregatedControllerErrorMap,
+    assembledrrorMap,
     handledErrorMap
   );
   // console.log(
