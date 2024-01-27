@@ -1,4 +1,4 @@
-function transformDataForD3(methodDependencyGraph, methodThrowableErrorMap) {
+function transformDataForD3(methodDependencyGraph, methodThrowErrorMap) {
   function createNode(name, errors, dependencies) {
     const errorMessages = errors; // Keep the original error messages
     const nodeName = `${name}`;
@@ -13,7 +13,7 @@ function transformDataForD3(methodDependencyGraph, methodThrowableErrorMap) {
 
   function createNodeForMethod(method) {
     const dependencies = methodDependencyGraph[method] || [];
-    const errors = methodThrowableErrorMap[method] || [];
+    const errors = methodThrowErrorMap[method] || [];
     return createNode(method, errors, dependencies);
   }
 

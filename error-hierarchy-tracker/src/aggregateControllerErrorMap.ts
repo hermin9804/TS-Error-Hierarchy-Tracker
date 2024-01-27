@@ -2,7 +2,7 @@ import { StringArrayMap } from "../types/stringArrayMap";
 
 export function aggregateControllerErrorMap(
   methodDependencyGraph: StringArrayMap,
-  methodThrowableErrorMap: StringArrayMap
+  methodThrowErrorMap: StringArrayMap
 ): StringArrayMap {
   const aggregatedErrors: StringArrayMap = {};
 
@@ -17,9 +17,7 @@ export function aggregateControllerErrorMap(
     visitedMethods.add(method);
 
     const errors = new Set<string>();
-    (methodThrowableErrorMap[method] || []).forEach((error) =>
-      errors.add(error)
-    );
+    (methodThrowErrorMap[method] || []).forEach((error) => errors.add(error));
 
     const dependencies = methodDependencyGraph[method];
     if (dependencies) {

@@ -2,11 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import transformDataForD3 from "./transformDataForD3";
 
-const HomePage = ({ methodDependencyGraph, methodThrowableErrorMap }) => {
-  const d3Data = transformDataForD3(
-    methodDependencyGraph,
-    methodThrowableErrorMap
-  );
+const HomePage = ({ methodDependencyGraph, methodThrowErrorMap }) => {
+  const d3Data = transformDataForD3(methodDependencyGraph, methodThrowErrorMap);
 
   return (
     <div>

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import TreePage from "./TreePage";
 import methodDependencyGraph from "./graph-data/methodDependencyGraph.json";
-import methodThrowableErrorMap from "./graph-data/methodThrowableErrorMap.json";
+import methodThrowErrorMap from "./graph-data/methodThrowErrorMap.json";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
           element={
             <TreePage
               methodDependencyGraph={methodDependencyGraph}
-              methodThrowableErrorMap={methodThrowableErrorMap}
+              methodThrowErrorMap={methodThrowErrorMap}
             />
           }
         />
@@ -23,7 +23,7 @@ const App = () => {
           element={
             <HomePage
               methodDependencyGraph={methodDependencyGraph}
-              methodThrowableErrorMap={methodThrowableErrorMap}
+              methodThrowErrorMap={methodThrowErrorMap}
             />
           }
         />
