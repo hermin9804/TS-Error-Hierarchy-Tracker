@@ -61,7 +61,6 @@ const ErrorHierarchyTree = ({ data }) => {
   const maxDescriptionArrayCount = getMaxDescriptionArrayCount(data);
   const dynamicWidth = maxTextLength * 18 + 100;
   const dynamicHeight = maxDescriptionArrayCount * 18 + 100;
-
   const nodeSize = {
     x: dynamicWidth,
     y: dynamicHeight,

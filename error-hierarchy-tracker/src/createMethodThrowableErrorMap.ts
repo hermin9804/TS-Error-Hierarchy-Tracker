@@ -1,7 +1,7 @@
 import ts from "typescript";
 import { StringArrayMap } from "../types/stringArrayMap";
 
-export function createMethodThrowableErrorMap(
+export function createmethodThrowableErrorMap(
   sourceFile: ts.SourceFile
 ): StringArrayMap {
   const errorMap: StringArrayMap = {};

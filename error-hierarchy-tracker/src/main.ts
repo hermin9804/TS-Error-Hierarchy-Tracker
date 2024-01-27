@@ -1,7 +1,7 @@
 import * as ts from "typescript";
 import * as fs from "fs";
 import { createMethodDependencyGraph } from "./createMethodDependencyGraph";
-import { createMethodThrowableErrorMap } from "./createMethodThrowableErrorMap";
+import { createmethodThrowableErrorMap } from "./createmethodThrowableErrorMap";
 import { createHandledErrorMap } from "./createHandledErrorMap";
 import { findFilesInDir } from "./findFilesInDir";
 import { StringArrayMap } from "../types/stringArrayMap";
@@ -40,7 +40,7 @@ async function main() {
 
     methodThrowableErrorMap = {
       ...methodThrowableErrorMap,
-      ...createMethodThrowableErrorMap(sourceFile),
+      ...createmethodThrowableErrorMap(sourceFile),
     };
 
     if (file.endsWith(".controller.ts")) {
@@ -57,7 +57,7 @@ async function main() {
   );
 
   console.log(
-    "allMethodThrowableErrorMap",
+    "allmethodThrowableErrorMap",
     JSON.stringify(methodThrowableErrorMap, null, 2)
   );
 

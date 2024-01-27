@@ -1,8 +1,8 @@
 import { StringArrayMap } from "../types/stringArrayMap";
 
 export function aggregateControllerErrorMap(
-  methodDependencyList: StringArrayMap,
-  throwAbleErrorList: StringArrayMap
+  methodDependencyGraph: StringArrayMap,
+  methodThrowableErrorMap: StringArrayMap
 ): StringArrayMap {
   const aggregatedErrors: StringArrayMap = {};
 
@@ -17,9 +17,11 @@ export function aggregateControllerErrorMap(
     visitedMethods.add(method);
 
     const errors = new Set<string>();
-    (throwAbleErrorList[method] || []).forEach((error) => errors.add(error));
+    (methodThrowableErrorMap[method] || []).forEach((error) =>
+      errors.add(error)
+    );
 
-    const dependencies = methodDependencyList[method];
+    const dependencies = methodDependencyGraph[method];
     if (dependencies) {
       dependencies.forEach((dependency) => {
         collectErrors(dependency, visitedMethods).forEach((error) =>
@@ -32,7 +34,7 @@ export function aggregateControllerErrorMap(
   }
 
   // Consider methods from any class ending with 'Controller'
-  Object.keys(methodDependencyList).forEach((method) => {
+  Object.keys(methodDependencyGraph).forEach((method) => {
     if (method.includes("Controller.")) {
       aggregatedErrors[method] = collectErrors(method);
     }

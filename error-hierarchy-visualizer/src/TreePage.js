@@ -3,9 +3,12 @@ import { useParams } from "react-router-dom";
 import ErrorHierarchyTree from "./ErrorHierarchyTree";
 import transformDataForD3 from "./transformDataForD3";
 
-const TreePage = ({ methodDependencyList, throwAbleErrorList }) => {
+const TreePage = ({ methodDependencyGraph, methodThrowableErrorMap }) => {
   const { treeId } = useParams();
-  const d3Data = transformDataForD3(methodDependencyList, throwAbleErrorList);
+  const d3Data = transformDataForD3(
+    methodDependencyGraph,
+    methodThrowableErrorMap
+  );
 
   const treeData = d3Data.find((data) => data.name === treeId);
 

@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./HomePage";
 import TreePage from "./TreePage";
-import methodDependencyList from "./graph-data/methodDependencyList.json";
-import throwAbleErrorList from "./graph-data/throwAbleErrorList.json";
+import methodDependencyGraph from "./graph-data/methodDependencyGraph.json";
+import methodThrowableErrorMap from "./graph-data/methodThrowableErrorMap.json";
 
 const App = () => {
   return (
@@ -13,8 +13,8 @@ const App = () => {
           path="/tree/:treeId"
           element={
             <TreePage
-              methodDependencyList={methodDependencyList}
-              throwAbleErrorList={throwAbleErrorList}
+              methodDependencyGraph={methodDependencyGraph}
+              methodThrowableErrorMap={methodThrowableErrorMap}
             />
           }
         />
@@ -22,8 +22,8 @@ const App = () => {
           path="/"
           element={
             <HomePage
-              methodDependencyList={methodDependencyList}
-              throwAbleErrorList={throwAbleErrorList}
+              methodDependencyGraph={methodDependencyGraph}
+              methodThrowableErrorMap={methodThrowableErrorMap}
             />
           }
         />
