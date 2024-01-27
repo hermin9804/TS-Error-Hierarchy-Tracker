@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
-// 파일 시스템을 검색하여 특정 확장자를 가진 파일 목록을 반환하는 함수
+
 export function findFilesInDir(startPath: string, filter: RegExp): string[] {
   let results: string[] = [];
 
