@@ -5,15 +5,13 @@ import { TrackerConfig } from "./tracker.config";
 export function createMethodDependencyGraph(
   sourceFileList: ts.SourceFile[]
 ): StringArrayMap {
-  let allDependencyGraph: StringArrayMap = {};
-
-  for (const sourceFile of sourceFileList) {
-    allDependencyGraph = {
-      ...allDependencyGraph,
+  return sourceFileList.reduce(
+    (acc, sourceFile) => ({
+      ...acc,
       ...createMethodDependencyGraphPerFile(sourceFile),
-    };
-  }
-  return allDependencyGraph;
+    }),
+    {}
+  );
 }
 
 function createMethodDependencyGraphPerFile(
@@ -22,40 +20,44 @@ function createMethodDependencyGraphPerFile(
   const dependencyMap: StringArrayMap = {};
 
   ts.forEachChild(sourceFile, (node) => {
-    if (ts.isClassDeclaration(node) && node.name) {
-      const className = node.name.getText();
+    if (!ts.isClassDeclaration(node) || !node.name) {
+      return;
+    }
 
-      node.members.forEach((member) => {
-        if (ts.isMethodDeclaration(member) && member.name) {
-          const methodName = member.name.getText();
-          const fullMethodName = `${className}.${methodName}`;
+    const className = node.name.getText();
 
-          if (!dependencyMap[fullMethodName]) {
-            dependencyMap[fullMethodName] = [];
+    node.members.forEach((member) => {
+      if (!ts.isMethodDeclaration(member) || !member.name) {
+        return;
+      }
+
+      const methodName = member.name.getText();
+      const fullMethodName = `${className}.${methodName}`;
+
+      if (!dependencyMap[fullMethodName]) {
+        dependencyMap[fullMethodName] = [];
+      }
+
+      findServiceMethodCalls(
+        member,
+        (dependencyClassName, dependencyMethodName) => {
+          if (dependencyClassName === "this") {
+            dependencyClassName = className;
+          } else if (dependencyClassName.startsWith("this.")) {
+            dependencyClassName = dependencyClassName.slice(5);
+            dependencyClassName =
+              dependencyClassName.charAt(0).toUpperCase() +
+              dependencyClassName.slice(1);
           }
 
-          findServiceMethodCalls(
-            member,
-            (dependencyClassName, dependencyMethodName) => {
-              if (dependencyClassName === "this") {
-                dependencyClassName = className;
-              } else if (dependencyClassName.startsWith("this.")) {
-                dependencyClassName = dependencyClassName.slice(5);
-                dependencyClassName =
-                  dependencyClassName.charAt(0).toUpperCase() +
-                  dependencyClassName.slice(1);
-              }
+          const fullDependencyName = `${dependencyClassName}.${dependencyMethodName}`;
 
-              const fullDependencyName = `${dependencyClassName}.${dependencyMethodName}`;
-
-              if (!dependencyMap[fullMethodName].includes(fullDependencyName)) {
-                dependencyMap[fullMethodName].push(fullDependencyName);
-              }
-            }
-          );
+          if (!dependencyMap[fullMethodName].includes(fullDependencyName)) {
+            dependencyMap[fullMethodName].push(fullDependencyName);
+          }
         }
-      });
-    }
+      );
+    });
   });
 
   for (const [key, value] of Object.entries(dependencyMap)) {

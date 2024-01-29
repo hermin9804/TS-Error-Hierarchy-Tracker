@@ -4,14 +4,13 @@ import { StringArrayMap } from "../types/stringArrayMap";
 export function createMethodThrowErrorMap(
   sourceFileList: ts.SourceFile[]
 ): StringArrayMap {
-  let allErrorMap: StringArrayMap = {};
-  for (const sourceFile of sourceFileList) {
-    allErrorMap = {
-      ...allErrorMap,
+  return sourceFileList.reduce(
+    (acc, sourceFile) => ({
+      ...acc,
       ...createMethodThrowErrorMapPerFile(sourceFile),
-    };
-  }
-  return allErrorMap;
+    }),
+    {}
+  );
 }
 
 function createMethodThrowErrorMapPerFile(
@@ -20,22 +19,23 @@ function createMethodThrowErrorMapPerFile(
   const errorMap: StringArrayMap = {};
 
   ts.forEachChild(sourceFile, (node) => {
-    if (ts.isClassDeclaration(node) && node.name) {
-      const className = node.name.getText();
-
-      node.members.forEach((member) => {
-        if (ts.isMethodDeclaration(member) && member.name) {
-          const methodName = member.name.getText();
-          const fullMethodName = `${className}.${methodName}`;
-          errorMap[fullMethodName] = [];
-
-          findThrowStatements(member, (errorMessage) => {
-            // Assuming errorMessage is cleaned in findThrowStatements
-            errorMap[fullMethodName].push(errorMessage);
-          });
-        }
-      });
+    if (!ts.isClassDeclaration(node) || !node.name) {
+      return;
     }
+
+    const className = node.name.getText();
+    node.members.forEach((member) => {
+      if (ts.isMethodDeclaration(member) && member.name) {
+        const methodName = member.name.getText();
+        const fullMethodName = `${className}.${methodName}`;
+        errorMap[fullMethodName] = [];
+
+        findThrowStatements(member, (errorMessage) => {
+          // Assuming errorMessage is cleaned in findThrowStatements
+          errorMap[fullMethodName].push(errorMessage);
+        });
+      }
+    });
   });
 
   return errorMap;
