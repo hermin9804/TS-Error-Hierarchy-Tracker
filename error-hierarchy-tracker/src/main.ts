@@ -7,6 +7,7 @@ import { assembleHierarchyErrorMap } from "./assembleHierarchyErrorMap";
 import { createUnhandledErrorMap } from "./createUnhandledErrorMap";
 import { createUnnecessaryHandledErrorMap } from "./createUnnecessaryHandledErrorMap";
 import { getSourceFileList } from "./getSourceFileList";
+import { buildErrorHandlingDecoratorMap } from "./buildErrorHandlingDecoratorMap";
 
 // Main Execution Function
 async function main() {
@@ -37,6 +38,13 @@ async function main() {
   //   "Assembled Error Map:",
   //   JSON.stringify(assembledrrorMap, null, 2)
   // );
+
+  const expectedErrorHandlingMap =
+    buildErrorHandlingDecoratorMap(assembledrrorMap);
+  console.log(
+    "Expected Error Handling Map:",
+    JSON.stringify(expectedErrorHandlingMap, null, 2)
+  );
 
   const unhandledErrorMap = createUnhandledErrorMap(
     assembledrrorMap,

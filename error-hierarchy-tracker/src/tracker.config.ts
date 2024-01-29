@@ -1,7 +1,9 @@
 interface ITrackerConfig {
   srcPath: string;
+  standardizedErrorFilePath: string;
   targetFileTypeList: string[];
   rootClassTypeList: string[];
+  errorHandlingDecoratorName: string;
   getCapitalizedTargetFileTypeList: () => string[];
   getCapitalizedRootClassTypeList: () => string[];
   capitalizeStringList: (stringList: string[]) => string[];
@@ -9,8 +11,11 @@ interface ITrackerConfig {
 
 export const TrackerConfig: ITrackerConfig = {
   srcPath: "../test-app/najuha-v2-be/src",
+  standardizedErrorFilePath:
+    "../test-app/najuha-v2-be/src/common/response/errorResponse.ts",
   targetFileTypeList: ["controller", "service", "strategy"],
   rootClassTypeList: ["controller"],
+  errorHandlingDecoratorName: "TypedException",
 
   getCapitalizedTargetFileTypeList: function () {
     return this.capitalizeStringList(this.targetFileTypeList);

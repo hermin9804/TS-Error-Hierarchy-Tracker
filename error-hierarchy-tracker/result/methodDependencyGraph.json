@@ -18,17 +18,14 @@
     "AuthService.createRefreshToken"
   ],
   "AuthService.createAccessToken": [
-    "JwtService.sign",
-    "ConfigService.get"
+    "JwtService.sign"
   ],
   "AuthService.createRefreshToken": [
-    "JwtService.sign",
-    "ConfigService.get"
+    "JwtService.sign"
   ],
   "AuthService.verifyRefreshToken": [
     "JwtService.decode",
-    "JwtService.verify",
-    "ConfigService.get"
+    "JwtService.verify"
   ],
   "AuthService.testPrintAllRedisData": [],
   "GoogleStrategy.validate": [
@@ -37,7 +34,6 @@
     "GoogleStrategy.convertUserDataToCreateUserDto"
   ],
   "GoogleStrategy.getAccessToken": [
-    "ConfigService.get",
     "HttpService.post"
   ],
   "GoogleStrategy.getUserData": [
@@ -50,7 +46,6 @@
     "KakaoStrategy.convertUserDataToCreateUserDto"
   ],
   "KakaoStrategy.getAccessToken": [
-    "ConfigService.get",
     "HttpService.post"
   ],
   "KakaoStrategy.getUserData": [
@@ -63,7 +58,6 @@
     "NaverStrategy.convertUserDataToCreateUserDto"
   ],
   "NaverStrategy.getAccessToken": [
-    "ConfigService.get",
     "HttpService.post"
   ],
   "NaverStrategy.getUserData": [
@@ -86,6 +80,7 @@
   ],
   "UsersService.createUser": [],
   "UsersService.updateUser": [],
+  "UsersService.updateUserRole": [],
   "UsersService.findUserBySnsIdAndProvider": [],
   "UsersService.findUserById": []
 }

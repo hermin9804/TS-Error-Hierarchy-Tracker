@@ -11,7 +11,7 @@
   ],
   "AuthService.testPrintAllRedisData": [],
   "GoogleStrategy.validate": [
-    "new BusinessException(\n        SnsAuthErrorMap.SNS_AUTH_NAVER_GOOLE_LOGIN_FAIL,\n        e.response.data,\n      )"
+    "new BusinessException(\n        SnsAuthErrorMap.SNS_AUTH_GOOGLE_LOGIN_FAIL,\n        e.response.data,\n      )"
   ],
   "GoogleStrategy.getAccessToken": [],
   "GoogleStrategy.getUserData": [],
@@ -36,6 +36,9 @@
   "UsersController.getMe": [],
   "UsersService.createUser": [],
   "UsersService.updateUser": [
+    "new BusinessException(UsersErrorMap.USERS_NOT_FOUND)"
+  ],
+  "UsersService.updateUserRole": [
     "new BusinessException(UsersErrorMap.USERS_NOT_FOUND)"
   ],
   "UsersService.findUserBySnsIdAndProvider": [],

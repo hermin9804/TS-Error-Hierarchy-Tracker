@@ -1,0 +1,15 @@
+{
+  "AuthController.snsLogin": [
+    "@TypedException<SNS_AUTH_NOT_SUPPORTED_SNS_PROVIDER>(5000, 'SNS_AUTH_NOT_SUPPORTED_SNS_PROVIDER')",
+    "@TypedException<SNS_AUTH_KAKAO_LOGIN_FAIL>(5001, 'SNS_AUTH_KAKAO_LOGIN_FAIL')",
+    "@TypedException<SNS_AUTH_NAVER_LOGIN_FAIL>(5002, 'SNS_AUTH_NAVER_LOGIN_FAIL')",
+    "@TypedException<SNS_AUTH_GOOGLE_LOGIN_FAIL>(5003, 'SNS_AUTH_GOOGLE_LOGIN_FAIL')"
+  ],
+  "AuthController.refreshToken": [
+    "@TypedException<AUTH_REFRESH_TOKEN_UNAUTHORIZED>(4002, 'AUTH_REFRESH_TOKEN_UNAUTHORIZED')",
+    "@TypedException<AUTH_REFRESH_TOKEN_UNAUTHORIZED>(4002, 'AUTH_REFRESH_TOKEN_UNAUTHORIZED')"
+  ],
+  "UsersController.patchUser": [
+    "@TypedException<USERS_NOT_FOUND>(6001, 'USERS_NOT_FOUND')"
+  ]
+}

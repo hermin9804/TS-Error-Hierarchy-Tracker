@@ -5,23 +5,19 @@ import { TrackerConfig } from "./tracker.config";
 export function createHandledErrorMap(
   sourceFileList: ts.SourceFile[]
 ): StringArrayMap {
-  let allErrorMap: StringArrayMap = {};
-  for (const sourceFile of sourceFileList) {
-    if (!checkIfFileNameEndsWithSuffixList(sourceFile.fileName)) {
-      continue;
-    }
-
-    allErrorMap = {
-      ...allErrorMap,
+  return sourceFileList.filter(checkIfFileNameEndsWithSuffixList).reduce(
+    (acc, sourceFile) => ({
+      ...acc,
       ...createHandledErrorMapPerFile(sourceFile),
-    };
-  }
-  return allErrorMap;
+    }),
+    {}
+  );
 }
 
-function checkIfFileNameEndsWithSuffixList(filename: string): boolean {
-  const rootClassTypeLsit = TrackerConfig.rootClassTypeList;
-  for (const type of rootClassTypeLsit) {
+function checkIfFileNameEndsWithSuffixList(sourceFile: ts.SourceFile): boolean {
+  const rootClassTypeList = TrackerConfig.rootClassTypeList;
+  const filename = sourceFile.fileName; // or any appropriate property that gives you the file name
+  for (const type of rootClassTypeList) {
     if (filename.endsWith(`${type}.ts`)) {
       return true;
     }
@@ -45,13 +41,14 @@ function createHandledErrorMapPerFile(
           errors[fullMethodName] = [];
 
           const decorators = ts.getDecorators(member);
+
           decorators?.forEach((decorator) => {
             if (ts.isCallExpression(decorator.expression)) {
               const decoratorName = decorator.expression.expression.getText();
-              if (decoratorName === "HandleError") {
-                const errorArgument =
-                  decorator.expression.arguments[0].getText();
-                // Clean the error argument if necessary
+              if (decoratorName === TrackerConfig.errorHandlingDecoratorName) {
+                const errorArgument = decorator.expression.arguments
+                  .map((arg) => arg.getText())
+                  .join(", ");
                 errors[fullMethodName].push(errorArgument);
               }
             }
