@@ -1,7 +1,5 @@
 import { StringArrayMap } from "../types/stringArrayMap";
-
-// const RootClassSuffixList = ["Controller", "Service", "Strategy"];
-const RootClassSuffixList = ["Controller"];
+import { TrackerConfig } from "./tracker.config";
 
 export function assembleHierarchyErrorMap(
   methodDependencyGraph: StringArrayMap,
@@ -36,7 +34,8 @@ export function assembleHierarchyErrorMap(
 
   // Consider methods from any class type specified in RootClassSuffixList
   Object.keys(methodDependencyGraph).forEach((method) => {
-    const isRootClassMethod = RootClassSuffixList.some((suffix) =>
+    const rootClassSuffixList = TrackerConfig.getCapitalizedRootClassTypeList();
+    const isRootClassMethod = rootClassSuffixList.some((suffix) =>
       method.includes(`${suffix}.`)
     );
     if (isRootClassMethod) {

@@ -1,76 +1,42 @@
-import * as ts from "typescript";
 import * as fs from "fs";
 import { createMethodDependencyGraph } from "./createMethodDependencyGraph";
 import { createMethodThrowErrorMap } from "./createMethodThrowErrorMap";
 import { createHandledErrorMap } from "./createHandledErrorMap";
-import { findFilesInDir } from "./findFilesInDir";
 import { StringArrayMap } from "../types/stringArrayMap";
 import { assembleHierarchyErrorMap } from "./assembleHierarchyErrorMap";
 import { createUnhandledErrorMap } from "./createUnhandledErrorMap";
 import { createUnnecessaryHandledErrorMap } from "./createUnnecessaryHandledErrorMap";
+import { getSourceFileList } from "./getSourceFileList";
 
 // Main Execution Function
 async function main() {
-  // const projectRoot = "..//test-app/test-app-nest/src";
-  const projectRoot = "../test-app/najuha-v2-be/src";
-  const targetFiles = findFilesInDir(
-    projectRoot,
-    /\.controller\.ts$|\.service\.ts$|\.strategy\.ts$/
-  );
+  const sourceFileList = getSourceFileList();
 
-  // console.log("targetFiles", targetFiles);
-
-  let methodDependencyGraph: StringArrayMap = {};
-  let methodThrowErrorMap: StringArrayMap = {};
-  let handledErrorMap = {};
-
-  for (const file of targetFiles) {
-    const sourceCode = ts.sys.readFile(file) || "";
-    const sourceFile = ts.createSourceFile(
-      file,
-      sourceCode,
-      ts.ScriptTarget.Latest,
-      true
-    );
-
-    methodDependencyGraph = {
-      ...methodDependencyGraph,
-      ...createMethodDependencyGraph(sourceFile),
-    };
-
-    methodThrowErrorMap = {
-      ...methodThrowErrorMap,
-      ...createMethodThrowErrorMap(sourceFile),
-    };
-
-    if (file.endsWith(".controller.ts")) {
-      handledErrorMap = {
-        ...handledErrorMap,
-        ...createHandledErrorMap(sourceFile),
-      };
-    }
-  }
-
+  const methodDependencyGraph: StringArrayMap =
+    createMethodDependencyGraph(sourceFileList);
   // console.log(
   //   "methodDependencyGraph",
   //   JSON.stringify(methodDependencyGraph, null, 2)
   // );
 
+  const methodThrowErrorMap: StringArrayMap =
+    createMethodThrowErrorMap(sourceFileList);
   // console.log(
   //   "methodThrowErrorMap",
   //   JSON.stringify(methodThrowErrorMap, null, 2)
   // );
 
+  const handledErrorMap: StringArrayMap = createHandledErrorMap(sourceFileList);
   // console.log("handledErrorMap", JSON.stringify(handledErrorMap, null, 2));
 
   const assembledrrorMap = assembleHierarchyErrorMap(
     methodDependencyGraph,
     methodThrowErrorMap
   );
-  console.log(
-    "Assembled Error Map:",
-    JSON.stringify(assembledrrorMap, null, 2)
-  );
+  // console.log(
+  //   "Assembled Error Map:",
+  //   JSON.stringify(assembledrrorMap, null, 2)
+  // );
 
   const unhandledErrorMap = createUnhandledErrorMap(
     assembledrrorMap,

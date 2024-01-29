@@ -1,7 +1,22 @@
 import ts from "typescript";
 import { StringArrayMap } from "../types/stringArrayMap";
+import { TrackerConfig } from "./tracker.config";
 
 export function createMethodDependencyGraph(
+  sourceFileList: ts.SourceFile[]
+): StringArrayMap {
+  let allDependencyGraph: StringArrayMap = {};
+
+  for (const sourceFile of sourceFileList) {
+    allDependencyGraph = {
+      ...allDependencyGraph,
+      ...createMethodDependencyGraphPerFile(sourceFile),
+    };
+  }
+  return allDependencyGraph;
+}
+
+function createMethodDependencyGraphPerFile(
   sourceFile: ts.SourceFile
 ): StringArrayMap {
   const dependencyMap: StringArrayMap = {};
@@ -51,7 +66,7 @@ export function createMethodDependencyGraph(
 }
 
 function hasClassSuffix(className: string): boolean {
-  const suffixes = ["Controller", "Service", "Strategy"];
+  const suffixes = TrackerConfig.getCapitalizedTargetFileTypeList();
   const hasSuffix = suffixes.some((suffix) => className.includes(suffix));
   return hasSuffix;
 }

@@ -2,6 +2,19 @@ import ts from "typescript";
 import { StringArrayMap } from "../types/stringArrayMap";
 
 export function createMethodThrowErrorMap(
+  sourceFileList: ts.SourceFile[]
+): StringArrayMap {
+  let allErrorMap: StringArrayMap = {};
+  for (const sourceFile of sourceFileList) {
+    allErrorMap = {
+      ...allErrorMap,
+      ...createMethodThrowErrorMapPerFile(sourceFile),
+    };
+  }
+  return allErrorMap;
+}
+
+function createMethodThrowErrorMapPerFile(
   sourceFile: ts.SourceFile
 ): StringArrayMap {
   const errorMap: StringArrayMap = {};
